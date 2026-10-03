@@ -1,65 +1,80 @@
 # Sohojatra — Research Collaboration Portal
 
-**Sohojatra** is a web-based Research Collaboration Portal developed as a **CSE370: Database Management Systems** course project at **BRAC University**.
+Sohojatra is a web-based Research Collaboration Portal developed as a **CSE370: Database Management Systems** course project at **BRAC University**.
 
-The platform is designed to help **students and faculty organize and manage research collaboration** in one centralized system.
+The system provides a centralized platform for students and faculty to manage research projects, teams, tasks, resources, progress updates, meetings, and feedback.
 
-## 🎯 Project Objective
+## Project Overview
 
-Research collaboration often involves managing projects, team members, tasks, resources, meetings, and progress updates across different platforms.
+Research collaboration involves several interconnected activities, including project management, task assignment, resource sharing, progress tracking, and communication between students and faculty.
 
-Sohojatra brings these activities together into a single platform to make research work more **organized, transparent, and easier to track**.
+Sohojatra integrates these activities into a single system. It uses a relational database to maintain connections between users, research projects, teams, tasks, resources, meetings, and progress records.
 
-## ✨ Key Features
+The system supports three primary roles:
 
-### 👨‍🎓 Student
+* **Student** — Participate in research projects, manage assigned tasks, access resources, submit progress updates, and view meetings and feedback.
+* **Faculty** — Create and manage research projects, form research teams, assign tasks, manage resources, schedule meetings, review progress, and provide feedback.
+* **Admin** — Manage users, roles, projects, and overall system activity.
 
-* View and join research projects
-* Manage assigned tasks
-* Access research resources
-* Submit weekly progress updates
-* View upcoming and past meetings
-* Receive faculty feedback
-* Track research project activities
+## Key Features
 
-### 👨‍🏫 Faculty
+### Project Management
 
 * Create and manage research projects
-* Manage research teams
-* Assign and monitor tasks
-* Add and manage research resources
-* Schedule meetings
-* Review student progress
-* Provide feedback
+* View available and active research projects
+* Manage project teams
+* Connect project activities through relational database relationships
 
-### 🛡️ Admin
+### Task Management
 
-* Manage users and roles
-* Monitor projects and platform activity
-* Access administrative dashboards
+* Create and assign research tasks
+* Track task status and deadlines
+* Identify overdue, due-today, and upcoming tasks
+* Update task information
 
-### 🔐 Security & Access Control
+### Resource Management
 
-* Role-based access control
+* Add and manage research-related resources
+* Associate resources with specific research projects
+* Provide project members with centralized access to resources
+
+### Progress Tracking
+
+* Submit weekly research progress
+* Maintain a project-based progress timeline
+* Allow faculty to review student progress
+* Provide feedback related to submitted progress
+
+### Meeting Management
+
+* Schedule research meetings
+* View upcoming and previous meetings
+* Associate meetings with relevant students and faculty
+
+### Authentication and Authorization
+
+* User authentication
 * Password hashing and verification
-* Prepared SQL statements
-* Session-based authentication
-* Input/output validation and escaping
-* Protected access to role-specific pages
+* Role-based access control
+* Session-based authorization
+* Restricted access to role-specific functionality
 
-## 🛠️ Tech Stack
+## Technology Stack
 
-* **Backend:** PHP
-* **Database:** MySQL / MariaDB
-* **Frontend:** HTML, CSS, JavaScript
-* **Local Server:** XAMPP
-* **Development Assistance:** Google Antigravity, ChatGPT
+| Component                | Technology                  |
+| ------------------------ | --------------------------- |
+| Backend                  | PHP                         |
+| Database                 | MySQL / MariaDB             |
+| Frontend                 | HTML, CSS, JavaScript       |
+| Local Development Server | XAMPP                       |
+| Database Management      | phpMyAdmin                  |
+| Development Assistance   | Google Antigravity, ChatGPT |
 
-## 🗄️ Database
+## Database Design
 
-The project uses a relational database to represent the different components of a research collaboration workflow.
+Sohojatra follows a relational database structure designed to represent the different components of a research collaboration system.
 
-Major entities include:
+Major entities and relationships include:
 
 * User
 * Student
@@ -72,45 +87,69 @@ Major entities include:
 * Meeting
 * Progress
 * Join Request
-* Supporting relationship tables
+* Project-Team relationships
+* Project-Resource relationships
+* Project-Progress relationships
 
-The database connects research projects with their teams, tasks, resources, progress records, meetings, and feedback.
+The relational structure allows project-related activities to remain connected and enables information to be retrieved based on users, projects, teams, and roles.
 
-## 🔄 Research Workflow
+## System Workflow
 
 ```text
-Faculty creates Research Project
-            ↓
-       Student joins
-            ↓
-       Team Formation
-            ↓
-     Tasks & Resources
-            ↓
-     Weekly Progress
-            ↓
-        Meetings
-            ↓
-    Faculty Feedback
-            ↓
-      Progress Tracking
+Faculty Creates Project
+        |
+        v
+Student Joins Project
+        |
+        v
+Team Formation
+        |
+        v
+Task Assignment and Resources
+        |
+        v
+Weekly Progress Submission
+        |
+        v
+Research Meetings
+        |
+        v
+Faculty Review and Feedback
+        |
+        v
+Progress Tracking
 ```
 
-## 🖥️ Running the Project Locally
+## Security Measures
+
+The application includes several basic security practices:
+
+* Password hashing using PHP password functions
+* Prepared SQL statements to reduce SQL injection risks
+* Output escaping to reduce XSS risks
+* Session regeneration after authentication
+* Role-based access control
+* Server-side validation
+* Protected role-specific pages
+
+## Running the Project Locally
 
 ### Prerequisites
 
-Install:
-
 * XAMPP
-* A web browser
-* MySQL/MariaDB through XAMPP
+* PHP
+* MySQL or MariaDB
+* A modern web browser
 
-### Setup
+### Installation
 
-1. Clone or download this repository.
+1. Clone the repository:
 
-2. Copy the project folder into:
+```bash
+git clone https://github.com/your-username/sohojatra-research-collaboration-portal.git
+```
+
+2. Move the project folder into the XAMPP `htdocs` directory:
 
 ```text
 C:\xampp\htdocs\
@@ -118,48 +157,53 @@ C:\xampp\htdocs\
 
 3. Start **Apache** and **MySQL** from the XAMPP Control Panel.
 
-4. Open **phpMyAdmin** and create the required database.
+4. Open **phpMyAdmin**.
 
-5. Import the project's SQL database file.
+5. Create the required database.
 
-6. Configure the database connection in the project's database configuration file if required.
+6. Import the project's SQL database file.
 
-7. Open the project in your browser:
+7. Configure the database connection according to your local MySQL setup.
+
+8. Open the application in a browser:
 
 ```text
 http://localhost/research_collaboration_portal/
 ```
 
-## 🤖 Use of AI
+## Development Process
 
-AI tools were used as **development assistants** during the project.
+The project was developed collaboratively with a focus on database design, backend implementation, frontend development, authentication, authorization, testing, debugging, and integration of the research workflow.
 
-* **Google Antigravity:** Assisted with implementation, debugging, UI/UX improvements, and development workflows.
-* **ChatGPT:** Assisted with planning, debugging, code understanding, feature design, and development guidance.
+AI-assisted development tools were also used during the development process:
 
-The project requirements, database structure, feature decisions, testing, and overall development were carried out and refined by the team.
+* **Google Antigravity** — assisted with implementation, debugging, UI/UX development, and code modifications.
+* **ChatGPT** — assisted with project planning, technical guidance, debugging, feature design, and code understanding.
 
-## 📚 Learning Outcomes
+AI tools were used as development assistants throughout the project, while the project requirements, database structure, feature decisions, testing, and final implementation were reviewed and refined by the team.
 
-Through this project, we gained practical experience in:
+## Learning Outcomes
+
+This project provided practical experience with:
 
 * Relational database design
 * SQL and database relationships
 * PHP backend development
-* Authentication and authorization
 * CRUD operations
-* Frontend development
-* Form handling and validation
+* Authentication and authorization
 * Session management
+* Form handling and validation
+* Frontend development
 * Database security
 * Testing and debugging
-* Integrating a complete web application
+* Integrating a complete database-driven web application
 
-## 📌 Course
+## Course Information
 
-**CSE370 — Database Management Systems**
-**BRAC University**
+**Course:** CSE370 — Database Management Systems
+**Institution:** BRAC University
+**Project:** Sohojatra — Research Collaboration Portal
 
----
+## License
 
-⭐ Feel free to explore the repository and the implementation.
+This project is licensed under the MIT License. See the `LICENSE` file for details.
